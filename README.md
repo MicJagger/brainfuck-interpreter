@@ -7,9 +7,11 @@ C-interpreter to run brainfuck code
 1. ``git clone LINK``
 2. ``cd brainfuck-interpreter``
 
-``make`` / ``Mingw32-make`` (Windows) to build the executable
+``make`` to build the executable
 
-``make run`` / ``Mingw32-make run`` (Windows) to build and run
+``make run`` to build and run
+
+``make hello-world`` to build and run ``./examples/helloworld.bf``
 
 # Usage
 

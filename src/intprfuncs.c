@@ -118,10 +118,6 @@ int interpret(FILE* fptr, char* data) {
             default:
                 break;
         }
-        if (index < 0) {
-            printf("Out of instruction range, attempted access at %d.\n", index);
-            return FAIL;
-        }
     }
 
     return SUCCESS;
