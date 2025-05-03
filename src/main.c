@@ -1,16 +1,26 @@
 #include <stdio.h>
 
+#include "intprfuncs.h"
+
 int main(int argc, char* argv[]) {
-    char filename[32];
-    if (argc == 1) {
-        printf("Input file name: ");
-        scanf("%31s", &filename);
+    char filename[FILENAME_MAX];
+    for (int i = 0; i < FILENAME_MAX; i++) {
+        filename[i] = '\0';
     }
-    else {
-        snprintf(filename, 31, argv[1]);
+    FILE* fptr;
+
+    getfilename(argc, argv, filename);
+    if (openfile(&fptr, filename) < SUCCESS) {
+        printf("Failed to open file.\n");
+        return FAIL;
     }
-    printf("Running: %s", filename);
 
+    char ch;
+    while ((ch = fgetc(fptr)) != EOF) {
+        printf("%c", ch);
+    }
+    
+    fclose(fptr);
 
-    return 0;
+    return SUCCESS;
 }
