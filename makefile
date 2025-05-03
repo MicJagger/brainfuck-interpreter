@@ -10,3 +10,7 @@ default:
 run:
 	gcc -o $(NAME) src/*.c
 	$(NAME)
+
+hello-world:
+	gcc -o $(NAME) src/*.c
+	$(NAME) examples/helloworld.bf

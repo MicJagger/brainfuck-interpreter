@@ -1,12 +1,12 @@
 #include <stdio.h>
+#include <string.h>
 
 #include "intprfuncs.h"
 
 int main(int argc, char* argv[]) {
+    int returnVal = SUCCESS;
     char filename[FILENAME_MAX];
-    for (int i = 0; i < FILENAME_MAX; i++) {
-        filename[i] = '\0';
-    }
+    memset(filename, 0, FILENAME_MAX);
     FILE* fptr;
 
     getfilename(argc, argv, filename);
@@ -15,12 +15,20 @@ int main(int argc, char* argv[]) {
         return FAIL;
     }
 
-    char ch;
-    while ((ch = fgetc(fptr)) != EOF) {
-        printf("%c", ch);
+    // initialize
+
+    char data[DATA_SIZE];
+    memset(data, 0, DATA_SIZE);
+
+    // begin interpreter
+
+    if (interpret(fptr, data) < SUCCESS) {
+        returnVal = FAIL;
     }
+
+    // cleanup
     
     fclose(fptr);
 
-    return SUCCESS;
+    return returnVal;
 }
